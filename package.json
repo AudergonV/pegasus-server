@@ -1,0 +1,25 @@
+{
+  "name": "pegasus-server",
+  "version": "1.0.0",
+  "description": "\"# pegasus-server\" \r \"# pegasus-server\"",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AudergonV/pegasus-server.git"
+  },
+  "author": "Vincent Audergon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AudergonV/pegasus-server/issues"
+  },
+  "homepage": "https://github.com/AudergonV/pegasus-server#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "i18n": "^0.9.1"
+  }
+}

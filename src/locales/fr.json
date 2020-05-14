@@ -1,0 +1,6 @@
+{
+	"HTTP_200": "Requête exécutée avec succès",
+    "HTTP_404": "Impossible de trouver la ressource demandée",
+    "HTTP_500": "Une erreur interne est survenue",
+	"VERSION": "Version du serveur: "
+}
