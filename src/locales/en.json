@@ -1,6 +1,8 @@
 {
-    "HTTP_200": "Request successful",
-    "HTTP_404": "Unable to find the resquested resource",
-    "HTTP_500": "Internal server error",
+    "HTTP_200": "Request successful :heavy_check_mark:",
+    "HTTP_400": "Bad request :x:",
+    "HTTP_403": "Forbidden :lock:",
+    "HTTP_404": "Unable to find the resquested resource :mag_right:",
+    "HTTP_500": "Internal server error :x:",
     "VERSION": "Server version: "
 }

@@ -1,6 +1,5 @@
 //const authMiddleware = require('./middlewares').authMiddleware;
 const Response = require('../obj/Response');
-const i18n = require('i18n');
 
 module.exports = app => {
 

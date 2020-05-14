@@ -1,4 +1,4 @@
-const i18n = require('i18n');
+const emoji = require('node-emoji');
 
 /**
  * @class Response
@@ -18,9 +18,10 @@ module.exports = class Response {
         this.message = message;
     }
 
-    send(res){
+    send(res) {
         //If message is undefined, the default HTTP response is returned
-        if(!this.message) this.message = res.__(`HTTP_${this.code}`)
+        if (!this.message) this.message = res.__(`HTTP_${this.code}`);
+        if (this.message) this.message = emoji.emojify(this.message);
         res.status(this.code).send(this);
     };
 
