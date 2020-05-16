@@ -12,6 +12,11 @@ console["addlog"] = (message, type = 0) => {
     return log;
 };
 
+//If the logs directory doesn't exist, we create it
+if (!fs.existsSync(process.env.LOG_DIRECTORY)){
+    fs.mkdirSync(process.env.LOG_DIRECTORY);
+}
+
 
 /**
  * Fetch the daily logs stored in the .log file. Returns a Response object
