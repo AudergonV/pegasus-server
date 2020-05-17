@@ -1,4 +1,4 @@
-const db = require('./db');
+const db = require('../db');
 const collection = db.getCollection('users');
 
 const addUsers = async (users) => {
@@ -51,7 +51,7 @@ const updateUserById = async (id, data) => {
     return result;
 };
 
-const findUser = async(filter) => {
+const findUser = async (filter) => {
     let result = await db.find(collection, filter);
     if (result) {
         console.addlog(`${result.length} user(s) found`);
@@ -61,7 +61,7 @@ const findUser = async(filter) => {
     return result;
 }
 
-const findUserById = async(id) => {
+const findUserById = async (id) => {
     let result = await db.findById(collection, id);
     if (result) {
         console.addlog(`${result.length} user(s) found`);
@@ -69,6 +69,16 @@ const findUserById = async(id) => {
         console.addlog(`An error occurred while searching users`, 2);
     }
     return result;
-}
+};
 
-module.exports = { addUsers, deleteUsers, deleteUsersById, updateUsers, findUser, findUserById, updateUserById };
+const findOrCreateUser = async (user) => {
+    let result = await db.findOrCreate(collection, { discordid: user.discordid }, user);
+    if (result) {
+        console.addlog(result.ok === 1 ? `User created or updated` : `Failed to create or update user`, result.ok === 1 ? 0 : 2);
+    } else {
+        console.addlog(`An error occurred while creating a user`, 2);
+    }
+    return result;
+};
+
+module.exports = { addUsers, deleteUsers, deleteUsersById, updateUsers, findUser, findUserById, findOrCreateUser, updateUserById };

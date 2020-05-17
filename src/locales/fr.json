@@ -2,7 +2,10 @@
 	"HTTP_200": "Requête exécutée avec succès :heavy_check_mark:",
 	"HTTP_400": "Requête invalide :x:",
 	"HTTP_403": "Accès interdit :lock:",
-    "HTTP_404": "Impossible de trouver la ressource demandée :mag_right:",
-    "HTTP_500": "Une erreur interne est survenue :x:",
-	"VERSION": "Version du serveur: "
+	"HTTP_404": "Impossible de trouver la ressource demandée :mag_right:",
+	"HTTP_500": "Une erreur interne est survenue :x:",
+	"VERSION": "Version du serveur: ",
+	"INVALID_CODE": "Le code retourné est invalide",
+	"LOGIN_SUCCESSFUL": "Connexion réussie. Bonjour ",
+	"LOGOUT": "Au revoir! :wave:"
 }

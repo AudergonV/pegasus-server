@@ -1,4 +1,3 @@
-//const authMiddleware = require('./middlewares').authMiddleware;
 const Response = require('../obj/Response');
 
 module.exports = app => {

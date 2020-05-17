@@ -1,25 +1,21 @@
 const { MongoClient, ObjectId } = require('mongodb');
 const client = new MongoClient(`mongodb://${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}`, { useUnifiedTopology: true });
 let db;
+const controllers = [];
 
 /**
  * Open the connection to the mongodb
- * @returns {Boolean} if the operation was successful
  */
-const openDB = async () => {
-    let ok = false;
-    await new Promise((resolve, reject) => {
-        client.connect((err) => {
-            if (err) reject(err);
-            else resolve(true);
-        });
-    }).then(() => {
-        console.addlog(`MongoDB client connected to ${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}`, 3);
-        ok = true;
-    }).catch((err) => {
-        console.addlog(err.toString(), 2);
+const openDB = (callback) => {
+    client.connect((err) => {
+        if (err) {
+            console.addlog(err.toString(), 2);
+        }
+        else {
+            console.addlog(`MongoDB client connected to ${process.env.MONGODB_HOST}:${process.env.MONGODB_PORT}`, 3);
+        }
+        callback(err);
     });
-    return ok;
 };
 
 const closeDB = () => {
@@ -209,6 +205,27 @@ const findById = async (collection, id) => {
     return result;
 };
 
+const findOrCreate = async (collection, filter, obj) => {
+    let result = undefined;
+    await new Promise((resolve, reject) => {
+        collection.findOneAndUpdate(
+            filter,
+            {
+                $set: obj
+            },
+            { upsert: true, returnNewDocument: true, new: true },
+            (err, result) => {
+                if (err) reject(err);
+                else resolve(result);
+            });
+    }).then((res) => {
+        result = res;
+    }).catch(err => {
+        console.addlog(`${err.toString()}`, 2);
+    });
+    return result;
+};
+
 /**
  * 
  * @param {String} name 
@@ -217,11 +234,25 @@ const findById = async (collection, id) => {
 const loadCollectionController = (name) => {
     let controller;
     try {
-        controller = require(name);
+        controller = require(`./ctrl/${name}`);
+        controllers[name] = controller;
     } catch (error) {
         console.addlog(`Collection controller "${name}" doesn't exist.`);
     }
     return controller;
 };
 
-module.exports = { openDB, closeDB, db, insertMany, deleteMany, deleteById, updateMany, updateById, getCollection, find, findById, loadCollectionController };
+/**
+ * 
+ * @param {String} name
+ * @returns The controller or undefined 
+ */
+const getController = (name) => {
+    let controller = controllers[name];
+    if (controller === undefined) {
+        console.addlog(`Asked for db controller ${name}, but it doesn't exist'`, 2);
+    }
+    return controller;
+};
+
+module.exports = { openDB, closeDB, db, insertMany, deleteMany, deleteById, updateMany, updateById, getCollection, find, findById, findOrCreate, loadCollectionController, getController };
