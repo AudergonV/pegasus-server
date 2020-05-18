@@ -30,6 +30,7 @@ const getLastLogs = function (callback) {
             if (log.indexOf('[WARNING]') >= 0) type = 1;
             if (log.indexOf('[ERROR]') >= 0) type = 2;
             if (log.indexOf('[SUCCESS]') >= 0) type = 3;
+            if (log.indexOf('[SYSTEM]') >= 0) type = 4;
             logs.push({ message: log, type: type });
         }
         callback(new Response(200, logs));

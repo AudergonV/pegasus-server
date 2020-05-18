@@ -11,5 +11,8 @@ module.exports = class User {
         this.discriminator = discriminator;
         this.fetchedAt = fetchedAt;
         this.accessToken = accessToken;
+        this.validate = false;
+        this.role = 0;
     }
+
 }

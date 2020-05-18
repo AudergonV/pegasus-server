@@ -6,7 +6,7 @@ const addUsers = async (users) => {
     if (result) {
         console.addlog(`${result.insertedCount} user(s) have been inserted`);
     } else {
-        console.addlog(`An error occurred while deleting users`, 2);
+        console.addlog(`An error occurred while inserting users`, 2);
     }
     return result;
 };
@@ -72,6 +72,8 @@ const findUserById = async (id) => {
 };
 
 const findOrCreateUser = async (user) => {
+    delete user.validate; //Do not update the "validate" and the "role" field
+    delete user.role;
     let result = await db.findOrCreate(collection, { discordid: user.discordid }, user);
     if (result) {
         console.addlog(result.ok === 1 ? `User created or updated` : `Failed to create or update user`, result.ok === 1 ? 0 : 2);

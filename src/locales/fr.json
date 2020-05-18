@@ -7,5 +7,8 @@
 	"VERSION": "Version du serveur: ",
 	"INVALID_CODE": "Le code retourné est invalide",
 	"LOGIN_SUCCESSFUL": "Connexion réussie. Bonjour ",
-	"LOGOUT": "Au revoir! :wave:"
+	"LOGOUT": "Au revoir! :wave:",
+	"WRONG_INVITATION_CODE": "L'invitation est invalide ou a expiré.",
+	"ACCOUNT_VALIDATION": "Félicitation! :tada: Votre compte a été activé, vous avez maintenant accès à Pegasus.",
+	"ALREADY_VALIDATE": "Ton compte est déjà activé!"
 }

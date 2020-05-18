@@ -29,6 +29,9 @@ module.exports = class Log {
             case 3:
                 console.log(`${this.toString()}`.green)
                 break;
+            case 4:
+                console.log(`${this.toString()}`.cyan)
+                break;
         }
     }
 
@@ -46,6 +49,9 @@ module.exports = class Log {
                 break;
             case 3:
                 type_text = "[SUCCESS]";
+                break;
+            case 4:
+                type_text = "[SYSTEM]";
                 break;
         }
         return `[${moment(this.date).format('DD/MM/YYYY HH:mm:ss')}]${type_text} ${emoji.emojify(this.message)}`;

@@ -24,7 +24,7 @@ const closeDB = () => {
         console.addlog(`Connection to mongodb closed`, 3)
     }
     else {
-        console.addlog(`The db client is already closed`, 2);
+        console.addlog(`The db client is already closed`, 1);
     }
 };
 
@@ -213,7 +213,7 @@ const findOrCreate = async (collection, filter, obj) => {
             {
                 $set: obj
             },
-            { upsert: true, returnNewDocument: true, new: true },
+            { upsert: true, returnNewDocument: true, new: true},
             (err, result) => {
                 if (err) reject(err);
                 else resolve(result);
@@ -255,4 +255,20 @@ const getController = (name) => {
     return controller;
 };
 
-module.exports = { openDB, closeDB, db, insertMany, deleteMany, deleteById, updateMany, updateById, getCollection, find, findById, findOrCreate, loadCollectionController, getController };
+module.exports = {
+    openDB,
+    closeDB,
+    db,
+    insertMany,
+    deleteMany,
+    deleteById,
+    updateMany,
+    updateById,
+    getCollection,
+    find,
+    findById,
+    findOrCreate,
+    loadCollectionController,
+    getController,
+    isOpen
+};
